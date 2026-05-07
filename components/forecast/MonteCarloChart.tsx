@@ -1,0 +1,4 @@
+"use client";
+import { Area, AreaChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { MonteCarloResult } from "@/types/forecast";
+export function MonteCarloChart({ data }: { data: MonteCarloResult[] }) { const shaped=data.map(d=>({...d, range1090:[d.percentile10,d.percentile90], range2575:[d.percentile25,d.percentile75]})); return <section className="card p-5"><h3 className="font-black">Monte Carlo Simulation</h3><p className="text-sm text-slate-500">Percentile ranges from historical annualized return and volatility assumptions.</p><div className="mt-4 h-80"><ResponsiveContainer><AreaChart data={shaped}><XAxis dataKey="year"/><YAxis/><Tooltip/><Area dataKey="percentile90" stroke="none" fill="#dbeafe"/><Area dataKey="percentile75" stroke="none" fill="#bfdbfe"/><Line dataKey="percentile50" stroke="#2563eb" strokeWidth={3}/></AreaChart></ResponsiveContainer></div></section>; }

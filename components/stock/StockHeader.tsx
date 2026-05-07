@@ -1,0 +1,4 @@
+import { RiskBadge } from "@/components/quality/RiskBadge";
+import { cn, formatCurrency, formatPercent } from "@/lib/formatters";
+import { Stock } from "@/types/stock";
+export function StockHeader({ stock }: { stock: Stock }) { return <section className="card p-6"><div className="flex flex-wrap items-start justify-between gap-4"><div><div className="flex gap-2"><RiskBadge label={stock.assetType} tone={stock.assetType === "ETF" ? "blue" : "purple"}/><RiskBadge label={stock.exchange}/></div><h2 className="mt-3 text-3xl font-black">{stock.ticker} · {stock.name}</h2><p className="text-slate-500">{stock.sector} {stock.industry ? `• ${stock.industry}` : ""}</p></div><div className="text-right"><div className="text-4xl font-black">{formatCurrency(stock.currentPrice)}</div><div className={cn("font-bold", stock.dayChange >= 0 ? "text-emerald-600" : "text-red-600")}>{formatCurrency(stock.dayChange)} ({formatPercent(stock.dayChangePercent/100)})</div></div></div></section>; }

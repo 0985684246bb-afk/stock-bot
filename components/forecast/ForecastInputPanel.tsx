@@ -1,0 +1,3 @@
+"use client";
+import { mockStocks } from "@/data/mockStocks";
+export function ForecastInputPanel({ ticker, horizon, onTicker, onHorizon }: { ticker:string; horizon:string; onTicker:(v:string)=>void; onHorizon:(v:string)=>void }) { return <section className="card grid gap-3 p-4 md:grid-cols-2"><select className="input" value={ticker} onChange={e=>onTicker(e.target.value)}>{mockStocks.map(s=><option key={s.ticker}>{s.ticker}</option>)}</select><select className="input" value={horizon} onChange={e=>onHorizon(e.target.value)}>{["1M","6M","1Y","3Y","5Y","10Y"].map(h=><option key={h}>{h}</option>)}</select></section>; }
