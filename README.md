@@ -50,12 +50,35 @@ Core principles:
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js 18.18 or newer
+- npm 9 or newer
+
+The project keeps runtime packages in `dependencies` (`next`, `react`, `react-dom`, `recharts`) and development-only tooling in `devDependencies` (`typescript`, Node/React typings, Tailwind, PostCSS, ESLint). Versions are pinned in `package.json` for reproducible local installs.
+
+### Install and Run Locally
+
 ```bash
 npm install
+npm run typecheck
 npm run dev
 ```
 
-Open <http://localhost:3000> and the app redirects to `/dashboard`.
+Open <http://localhost:3000> and the app redirects to `/dashboard`. The `dev` script binds to `0.0.0.0` so it works in local machines and containerized development environments.
+
+### Useful Commands
+
+```bash
+npm run dev        # start the Next.js development server
+npm run typecheck  # verify TypeScript and Next.js route/component types
+npm run lint       # run Next.js ESLint rules
+npm run build      # create a production build
+```
+
+### npm Registry Troubleshooting
+
+This repository includes a minimal `.npmrc` that points npm at the public npm registry and disables audit/funding network calls during install. If `npm install` fails with a registry/proxy `403 Forbidden`, check whether your environment has corporate proxy variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `npm_config_http_proxy`, or `npm_config_https_proxy` forcing requests through a blocked proxy. On an unrestricted network, `npm install` should download the pinned Next.js, React, TypeScript, and typings dependencies directly from `https://registry.npmjs.org/`.
 
 ## Environment Variables
 
