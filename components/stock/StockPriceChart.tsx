@@ -1,0 +1,5 @@
+"use client";
+import { useState } from "react";
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { HistoricalPrice } from "@/types/stock";
+export function StockPriceChart({ data }: { data: HistoricalPrice[] }) { const [range,setRange]=useState("1Y"); const slice = range==="1M"?22:range==="6M"?126:data.length; return <section className="card p-5"><div className="flex justify-between"><h3 className="font-black">Price Chart</h3><div className="flex flex-wrap gap-1">{["1M","6M","YTD","1Y","5Y","Max"].map(r=><button key={r} onClick={()=>setRange(r)} className={`rounded-lg px-2 py-1 text-xs font-bold ${range===r?"bg-blue-600 text-white":"bg-slate-100"}`}>{r}</button>)}</div></div><div className="mt-4 h-72"><ResponsiveContainer><AreaChart data={data.slice(-slice)}><XAxis dataKey="date" tick={{fontSize:11}}/><YAxis domain={["auto","auto"]}/><Tooltip/><Area type="monotone" dataKey="close" stroke="#2563eb" fill="#dbeafe" strokeWidth={3}/></AreaChart></ResponsiveContainer></div></section>; }

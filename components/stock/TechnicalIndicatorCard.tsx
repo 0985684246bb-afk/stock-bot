@@ -1,0 +1,4 @@
+import { getRsiSignal, getTrendSignal, getVolumeSignal } from "@/lib/forecast";
+import { formatCurrency } from "@/lib/formatters";
+import { Stock } from "@/types/stock";
+export function TechnicalIndicatorCard({ stock }: { stock: Stock }) { const closes=stock.historicalPrices.map(p=>p.close); const avg=(n:number)=>closes.slice(-n).reduce((a,b)=>a+b,0)/Math.min(n,closes.length); const rsi = 58; const items = [["MA20",formatCurrency(avg(20))],["MA50",formatCurrency(avg(50))],["MA200",formatCurrency(avg(200))],["RSI",`${rsi} · ${getRsiSignal(rsi)}`],["Volume Trend",getVolumeSignal(stock)],["Trend Signal",getTrendSignal(stock)]]; return <section className="card p-5"><h3 className="font-black">Technical Indicators</h3><div className="mt-4 grid gap-3 md:grid-cols-2">{items.map(([k,v])=><div key={k} className="rounded-xl bg-slate-50 p-3"><p className="text-xs font-bold uppercase text-slate-500">{k}</p><p className="font-black">{v}</p></div>)}</div></section>; }

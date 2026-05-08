@@ -1,0 +1,2 @@
+import { formatCurrency, formatPercent } from "@/lib/formatters";
+export function HoldingCard({ ticker, value, gainPct }: { ticker: string; value: number; gainPct: number }) { return <div className="card p-4"><p className="text-sm text-slate-500">{ticker}</p><div className="text-2xl font-black">{formatCurrency(value)}</div><p className={gainPct >= 0 ? "text-emerald-600" : "text-red-600"}>{formatPercent(gainPct)}</p></div>; }

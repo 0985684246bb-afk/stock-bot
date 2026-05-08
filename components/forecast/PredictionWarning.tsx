@@ -1,0 +1,1 @@
+export function PredictionWarning(){ return <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 font-semibold text-amber-900">This forecast is not financial advice. Price predictions are estimates based on historical data and assumptions. Actual results may differ.</div>; }

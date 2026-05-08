@@ -1,0 +1,3 @@
+import { mockDividends } from "@/data/mockDividends";
+import { formatCurrency } from "@/lib/formatters";
+export function DividendTable() { return <div className="card overflow-x-auto"><table className="min-w-full"><thead><tr><th className="th">Ticker</th><th className="th">Pay Date</th><th className="th">Per Share</th><th className="th">Shares</th><th className="th">Total</th></tr></thead><tbody>{mockDividends.map(d=><tr key={`${d.ticker}-${d.payDate}`} className="border-t border-slate-100"><td className="td font-black">{d.ticker}</td><td className="td">{d.payDate}</td><td className="td">{formatCurrency(d.amountPerShare)}</td><td className="td">{d.shares}</td><td className="td font-bold">{formatCurrency(d.amountPerShare*d.shares)}</td></tr>)}</tbody></table></div>; }

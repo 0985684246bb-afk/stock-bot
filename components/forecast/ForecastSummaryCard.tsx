@@ -1,0 +1,1 @@
+export function ForecastSummaryCard({ summary }: { summary:string }) { return <section className="card p-5"><h3 className="font-black">AI Summary (Rule-based MVP)</h3><p className="mt-3 text-slate-600">{summary}</p></section>; }
