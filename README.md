@@ -55,13 +55,14 @@ Core principles:
 - Node.js 18.18 or newer
 - npm 9 or newer
 
-The project keeps runtime packages in `dependencies` (`next`, `react`, `react-dom`, `recharts`) and development-only tooling in `devDependencies` (`typescript`, Node/React typings, Tailwind, PostCSS, ESLint). Versions are pinned in `package.json` for reproducible local installs.
+The project keeps runtime packages in `dependencies` (`next`, `react`, `react-dom`, `recharts`) and development-only tooling in `devDependencies` (`typescript`, Node/React typings, Tailwind, PostCSS, ESLint). Versions are pinned in `package.json`, and `package-lock.json` is committed so local installs resolve from the same dependency manifest.
 
 ### Install and Run Locally
 
 ```bash
 npm install
 npm run typecheck
+npm run build
 npm run dev
 ```
 
@@ -78,7 +79,7 @@ npm run build      # create a production build
 
 ### npm Registry Troubleshooting
 
-This repository includes a minimal `.npmrc` that points npm at the public npm registry and disables audit/funding network calls during install. If `npm install` fails with a registry/proxy `403 Forbidden`, check whether your environment has corporate proxy variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `npm_config_http_proxy`, or `npm_config_https_proxy` forcing requests through a blocked proxy. On an unrestricted network, `npm install` should download the pinned Next.js, React, TypeScript, and typings dependencies directly from `https://registry.npmjs.org/`.
+This repository includes a minimal `.npmrc` that points npm at the public npm registry and disables audit/funding network calls during install. If `npm install` fails with a registry/proxy `403 Forbidden`, check whether your environment has corporate proxy variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `npm_config_http_proxy`, or `npm_config_https_proxy` forcing requests through a blocked proxy. In this Codex environment on May 8, 2026, the proxy returned `403 Forbidden` for `https://registry.npmjs.org/@types%2fnode`, so install/build verification could not reach the registry here. On an unrestricted network, `npm install` should download the pinned Next.js, React, TypeScript, Tailwind, Recharts, and typings dependencies directly from `https://registry.npmjs.org/`.
 
 ## Environment Variables
 
